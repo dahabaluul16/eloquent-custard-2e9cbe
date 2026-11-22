@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="BookNest — find your next favourite read.">
+  <title>BookNest | Find your next favourite</title>
+
+  <link rel="icon" type="image/png" href="/booknest_favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <header class="site-header">
+    <a class="logo" href="#" aria-label="BookNest home">
+      <span class="logo-mark">✦</span> booknest
+    </a>
+
+    <nav>
+      <a href="#shop">Shop</a>
+      <a href="#about">Our story</a>
+      <button class="nav-link" id="openOrders" type="button">My orders</button>
+    </nav>
+
+    <div class="header-actions">
+      <button class="cart-button" id="openWishlist" type="button">
+        Saved <span id="wishlistCount">0</span>
+      </button>
+      <button class="cart-button" id="openCart" type="button">
+        Bag <span id="cartCount">0</span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow">A LITTLE PLACE FOR BIG STORIES</p>
+        <h1>Your next<br><em>favourite</em> is waiting.</h1>
+        <p class="hero-text">
+          A thoughtfully picked shelf of fantasy, romance, and stories
+          you'll think about long after the last page.
+        </p>
+        <a class="primary-button" href="#shop">
+          Explore the shelves <span>↗</span>
+        </a>
+        <div class="hero-note">
+          <span>✧</span> Curated for curious minds
+        </div>
+      </div>
+
+      <div class="hero-art" aria-label="Decorative book illustration">
+        <div class="sun"></div>
+        <div class="sparkle s1">✦</div>
+        <div class="sparkle s2">✧</div>
+
+        <div class="book-stack">
+          <div class="book book-one">
+            <span>THE<br>WILD<br>BETWEEN</span>
+            <small>A NOVEL</small>
+          </div>
+          <div class="book book-two">
+            <span>GARDEN<br>OF<br>MOONS</span>
+            <small>STORIES</small>
+          </div>
+          <div class="book book-three">
+            <span>THE<br>LAST<br>LIBRARY</span>
+            <small>BOOK I</small>
+          </div>
+        </div>
+
+        <div class="art-caption">stories worth staying up for</div>
+      </div>
+    </section>
+
+    <section class="shop-section" id="shop">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">THE BOOKNEST EDIT</p>
+          <h2>Find your kind of magic.</h2>
+        </div>
+        <p class="muted">A few good places to begin.</p>
+      </div>
+
+      <div class="toolbar">
+        <div class="filters" id="filters">
+          <button class="filter active" data-category="All">All books</button>
+          <button class="filter" data-category="Fantasy">Fantasy</button>
+          <button class="filter" data-category="Romance">Romance</button>
+          <button class="filter" data-category="Mystery">Mystery</button>
+        </div>
+
+        <div class="shop-tools">
+          <label class="search-wrap">
+            <span>⌕</span>
+            <input id="searchInput" type="search"
+              placeholder="Find a story..." aria-label="Search books">
+          </label>
+
+          <label class="sort-wrap">
+            Sort by
+            <select id="sortSelect" aria-label="Sort books">
+              <option value="featured">Featured</option>
+              <option value="title-asc">Title A–Z</option>
+              <option value="price-asc">Price: low to high</option>
+              <option value="price-desc">Price: high to low</option>
+            </select>
+          </label>
+        </div>
+      </div>
+
+      <div class="product-grid" id="productGrid"></div>
+    </section>
+
+    <section class="newsletter-section">
+      <div>
+        <p class="eyebrow">LETTERS FROM THE NEST</p>
+        <h2>A little bookish note?</h2>
+        <p>Join our reader list for new arrivals and shelf inspiration.</p>
+      </div>
+
+      <form id="newsletterForm">
+        <label class="sr-only" for="newsletterEmail">Email address</label>
+        <input id="newsletterEmail" type="email" required
+          placeholder="Your email address">
+        <button class="primary-button" type="submit">
+          Join the list <span>↗</span>
+        </button>
+      </form>
+    </section>
+
+    <section class="quote-band" id="about">
+      <span class="quote-star">✳</span>
+      <p>
+        “There is no such thing as too many books.<br>
+        Only not enough shelves.”
+      </p>
+      <small>THE BOOKNEST PHILOSOPHY</small>
+    </section>
+
+  </main>
+
+  <footer>
+    <div>
+      <a class="logo" href="#">
+        <span class="logo-mark">✦</span> booknest
+      </a>
+      <p>Made for readers, daydreamers, and one-more-chapter people.</p>
+    </div>
+
+    <div class="footer-links">
+      <a href="#shop">Shop books</a>
+      <a href="#about">Our story</a>
+      <a href="mailto:hello@booknest.example">Contact</a>
+    </div>
+
+    <small>© 2026 BookNest · Student e-commerce project · Demo store</small>
+  </footer>
+
+  <!-- PRODUCT DETAILS -->
+  <section class="product-modal" id="productModal"
+    aria-modal="true" role="dialog" aria-labelledby="detailTitle">
+
+    <button class="icon-button detail-close" id="closeProduct"
+      type="button" aria-label="Close product details">×</button>
+
+    <div id="productDetailContent"></div>
+  </section>
+
+  <!-- ORDER HISTORY -->
+  <section class="orders-modal" id="ordersModal"
+    aria-modal="true" role="dialog" aria-labelledby="ordersTitle">
+
+    <button class="icon-button modal-close" id="closeOrders"
+      type="button" aria-label="Close order history">×</button>
+
+    <p class="eyebrow">YOUR BOOKISH TRAIL</p>
+    <h2 id="ordersTitle">Order history</h2>
+    <div id="ordersList" class="orders-list"></div>
+  </section>
+
+  <!-- WISHLIST -->
+  <section class="wishlist-drawer" id="wishlistDrawer"
+    aria-label="Saved books" aria-hidden="true">
+
+    <div class="drawer-head">
+      <div>
+        <p class="eyebrow">BOOKS TO COME BACK TO</p>
+        <h2>Your wishlist</h2>
+      </div>
+
+      <button class="icon-button" id="closeWishlist"
+        type="button" aria-label="Close wishlist">×</button>
+    </div>
+
+    <div id="wishlistItems" class="cart-items"></div>
+  </section>
+
+  <!-- BACKDROP -->
+  <div class="overlay" id="overlay"></div>
+
+  <!-- SHOPPING CART -->
+  <aside class="cart-drawer" id="cartDrawer"
+    aria-label="Shopping cart" aria-hidden="true">
+
+    <div class="drawer-head">
+      <div>
+        <p class="eyebrow">YOUR LITTLE BOOK HAUL</p>
+        <h2>Your bag <span id="drawerCount">(0)</span></h2>
+      </div>
+
+      <button class="icon-button" id="closeCart"
+        type="button" aria-label="Close cart">×</button>
+    </div>
+
+    <div class="cart-items" id="cartItems"></div>
+
+    <div class="cart-bottom">
+      <div class="coupon-row">
+        <input id="couponInput" type="text" placeholder="Coupon code"
+          aria-label="Coupon code">
+        <button type="button" id="applyCoupon">Apply</button>
+      </div>
+
+      <p id="couponMessage" class="coupon-message" aria-live="polite"></p>
+
+      <div class="subtotal">
+        <span>Subtotal</span>
+        <strong id="subtotal">$0.00</strong>
+      </div>
+
+      <div class="subtotal discount-row" id="discountRow" hidden>
+        <span>Discount (10%)</span>
+        <strong id="discountAmount">−$0.00</strong>
+      </div>
+
+      <p class="shipping-note">
+        Delivery fees, if any, are confirmed by the seller.
+      </p>
+
+      <button class="primary-button checkout-button"
+        id="checkoutButton" type="button">
+        Continue to checkout <span>→</span>
+      </button>
+    </div>
+  </aside>
+
+  <!-- CHECKOUT -->
+  <section class="checkout-modal" id="checkoutModal"
+    aria-modal="true" role="dialog"
+    aria-labelledby="checkoutTitle" aria-hidden="true">
+
+    <div class="checkout-panel">
+
+      <div class="checkout-header">
+        <div>
+          <p class="eyebrow">ALMOST YOURS</p>
+          <h2 id="checkoutTitle">Checkout</h2>
+        </div>
+
+        <button class="icon-button modal-close" id="closeCheckout"
+          type="button" aria-label="Close checkout">×</button>
+      </div>
+
+      <p class="muted modal-intro">
+        Enter your details to place your order.
+        No online payment will be collected for this student project.
+      </p>
+
+      <form id="checkoutForm">
+
+        <label for="customerName">Full name</label>
+        <input id="customerName" name="name" type="text"
+          autocomplete="name" required placeholder="Your name">
+
+        <label for="customerEmail">Email address</label>
+        <input id="customerEmail" name="email" type="email"
+          autocomplete="email" required placeholder="you@example.com">
+
+        <label for="deliveryAddress">Delivery address</label>
+        <textarea id="deliveryAddress" name="address"
+          autocomplete="street-address" required rows="2"
+          placeholder="Your delivery address"></textarea>
+
+        <div class="checkout-total">
+          <span>Order total</span>
+          <strong id="checkoutTotal">$0.00</strong>
+        </div>
+
+        <p class="demo-payment-note">
+          Demo checkout only — no real payment is collected.
+        </p>
+
+        <button class="primary-button checkout-button"
+          type="submit">
+          Place order <span>↗</span>
+        </button>
+
+      </form>
+    </div>
+  </section>
+
+  <!-- ORDER SUCCESS -->
+  <section class="success-modal" id="successModal"
+    aria-live="polite" aria-hidden="true">
+
+    <div class="success-icon">✓</div>
+    <p class="eyebrow">ORDER RECEIVED</p>
+    <h2>It's a bookish day!</h2>
+
+    <p id="successMessage">Your order has been placed.</p>
+
+    <div id="receiptDetails" class="receipt-details"></div>
+
+    <button class="primary-button" id="continueShopping" type="button">
+      Back to browsing <span>↗</span>
+    </button>
+  </section>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <!-- SCRIPTS -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="supabase-config.js"></script>
+  <script src="script.js"></script>
+
+</body>
+</html>
+```
